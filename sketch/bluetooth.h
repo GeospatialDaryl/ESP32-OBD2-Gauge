@@ -52,6 +52,7 @@ void scanBTdevice() {//scan bluetooth device
   Terminal(txt,0,48,320,191);
 
   //matching scan obd2 and config obd2
+  foundOBD2 = false;
   for (uint8_t i=0;i<btDeviceCount;i++) {
     txt = String(i+1)+". "+deviceName[i]+" - "+deviceAddr[i];
     Terminal(txt,0,48,320,191);//list devices
@@ -80,9 +81,9 @@ void scanBTdevice() {//scan bluetooth device
         pref.putBytes("recent_client",client_addr,sizeof(client_addr));//save new bt addr to pref.
         Serial.println(F("Save a new BT client address"));
       }
-    } else //not match
-       foundOBD2 = false;
- 
+      break;
+    }
+
   }//for loop list device
 
 
